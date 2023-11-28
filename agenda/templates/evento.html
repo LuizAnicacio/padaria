@@ -1,0 +1,38 @@
+
+{% extends "model-page.html" %}
+{% block content %}
+
+<h2>Evento</h2>
+
+<form action="submit" method="POST">{% csrf_token %}
+    <div>
+        <input type="number" name="id_evento" value="{{ evento.id }}" hidden>
+    </div>
+    <div>
+        <input type="text" name="status" value="Em atendimento">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Pedido</label>
+        <input type="text" class="form-control" name="titulo" size="23" value="{{ evento.titulo }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Data da Retirada</label>
+        <input type="datetime-local" class="form-control" name="data_evento" value="{{ evento.get_data_input_evento }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Descirção</label>
+        <textarea class="form-control" name="descricao" rows="5" cols="24">{{ evento.descricao }}</textarea>
+    </div>
+
+    <button type="submit"class="btn btn-secondary">Salvar</button>
+    <a href="/">
+        <button type="button" class="btn btn-danger">Cancelar</button>
+    </a>
+    
+</form>
+
+{% endblock %}
+
